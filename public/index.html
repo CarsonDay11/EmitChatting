@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emit - The chatting app built for buisnesses</title>
+</head>
+<body>
+    <h1>Create Room</h1>
+    <form id="create-form">
+        <input type="text" id="create-room-name" placeholder="Room Name">
+        <input type="password" id="create-password" placeholder="Password">
+        <button type="submit">Create</button>
+    </form>
+
+    <h1>Join Room</h1>
+    <form id="join-form">
+        <input type="text" id="join-room-name" placeholder="Room Name">
+        <input type="password" id="join-password" placeholder="Password">
+        <button type="submit">Join</button>
+    </form>
+
+    <h1>Chat</h1>
+    <ul id="messages"></ul>
+    <form id="chat-form">
+        <input type="text" id="message-input" placeholder="Message">
+        <button type="submit">Send</button>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        document.getElementById('create-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const roomName = document.getElementById('create-room-name').value;
+            const password = document.getElementById('create-password').value;
+            fetch('/create-room', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ roomName, password })
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+            });
+        });
+
+        document.getElementById('join-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const roomName = document.getElementById('join-room-name').value;
+            const password = document.getElementById('join-password').value;
+            fetch('/join-room', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ roomName, password })
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+                if (data === 'Authentication successful') {
+                    socket.emit('join-room', roomName);
+                }
+            });
+        });
+
+        document.getElementById('chat-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const message = document.getElementById('message-input').value;
+            const roomName = document.getElementById('join-room-name').value;
+            socket.emit('chat-message', { roomName, message });
+            document.getElementById('message-input').value = '';
+        });
+
+        socket.on('chat-message', (message) => {
+            const li = document.createElement('li');
+            li.textContent = message;
+            document.getElementById('messages').appendChild(li);
+        });
+    </script>
+</body>
+</html>

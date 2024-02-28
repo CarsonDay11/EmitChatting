@@ -1,0 +1,13 @@
+{
+  "name": "Emit Chatting",
+  "version": "1.0.0",
+  "description": "The chatting app designed for buisnesses.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.3.2"
+  }
+}
