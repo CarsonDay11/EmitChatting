@@ -13,6 +13,28 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 let rooms = {};
 
+
+const adminUsers = process.env.ADMIN_USERS.split(',');
+const adminPasswords = process.env.ADMIN_PASSWORDS.split(',');
+
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+});
+
+app.post('/admin/delete-room', (req, res) => {
+    const { roomName, username, password } = req.body;
+    if (adminUsers.includes(username) && adminPasswords[adminUsers.indexOf(username)] === password) {
+        if (rooms[roomName]) {
+            delete rooms[roomName];
+            res.send(`Room '${roomName}' deleted successfully`);
+        } else {
+            res.status(404).send(`Room '${roomName}' not found`);
+        }
+    } else {
+        res.status(401).send('Unauthorized');
+    }
+});
+
 app.post('/create-room', (req, res) => {
     const { roomName, password } = req.body;
     rooms[roomName] = password;
