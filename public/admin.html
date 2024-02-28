@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emit Chatting | Administration Panel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Emit Chatting | Administration Panel</h1>
+    
+    <p> Room Deletions <strong>(USE THIS ONLY IF YOU ARE CERTAIN A USER IS VIOLATING RULES)</strong></p>
+    <form id="admin-delete-form" action="/admin/delete-room" method="POST">
+        <input type="text" id="admin-delete-room" placeholder="Room Name">
+        <input type="text" id="admin-username" placeholder="Admin Username">
+        <input type="password" id="admin-password" placeholder="Admin Password">
+        <button type="submit">Delete Room</button>
+    </form>
+</body>
+</html>
