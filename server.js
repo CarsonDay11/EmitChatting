@@ -21,6 +21,10 @@ app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
 
+app.get('/socket.io/socket.io.js', (req, res) => {
+  res.sendFile(path.join(__dirname, 'node_modules', 'socket.io-client', 'dist', 'socket.io.js'));
+});
+
 app.post('/admin/delete-room', (req, res) => {
     const { roomName, username, password } = req.body;
     if (adminUsers.includes(username) && adminPasswords[adminUsers.indexOf(username)] === password) {
