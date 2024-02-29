@@ -1,7 +1,7 @@
 {
   "name": "Emit Chatting",
   "version": "1.0.0",
-  "description": "The chatting app designed for buisnesses.",
+  "description": "The chatting app designed for communities.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
