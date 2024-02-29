@@ -13,10 +13,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 let rooms = {};
 
-
-const adminUsers = process.env.ADMIN_USER;
-const adminPasswords = process.env.ADMIN_PASSWORD;
-
+const adminUser = process.env.ADMIN_USER;
+const adminPassword = process.env.ADMIN_PASSWORD;
 
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'admin.html'));
@@ -28,7 +26,7 @@ app.get('/socket.io/socket.io.js', (req, res) => {
 
 app.post('/admin/delete-room', (req, res) => {
     const { roomName, username, password } = req.body;
-    if (adminUsers.includes(username) && adminPasswords[adminUsers.indexOf(username)] === password) {
+    if (username === adminUser && password === adminPassword) {
         if (rooms[roomName]) {
             delete rooms[roomName];
             res.send(`Room '${roomName}' deleted successfully`);
