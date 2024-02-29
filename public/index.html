@@ -36,7 +36,7 @@
         const socket = io();
 
         document.getElementById('create-form').addEventListener('submit', (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Prevent default form submission behavior
             const roomName = document.getElementById('create-room-name').value;
             const password = document.getElementById('create-password').value;
             fetch('/create-room', {
@@ -53,7 +53,7 @@
         });
 
         document.getElementById('join-form').addEventListener('submit', (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Prevent default form submission behavior
             const roomName = document.getElementById('join-room-name').value;
             const password = document.getElementById('join-password').value;
             fetch('/join-room', {
@@ -73,7 +73,7 @@
         });
 
         document.getElementById('chat-form').addEventListener('submit', (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Prevent default form submission behavior
             const message = document.getElementById('message-input').value;
             const roomName = document.getElementById('join-room-name').value;
             socket.emit('chat-message', { roomName, message });
