@@ -18,7 +18,7 @@
 
         <h1>Join Room</h1>
         <form id="join-form">
-            <input type="text" id="join-room-name" placeholder="Room Name">
+            <input type="text" id="join-room-id" placeholder="Room ID">
             <input type="password" id="join-password" placeholder="Password">
             <button type="submit">Join</button>
         </form>
@@ -54,20 +54,20 @@
 
         document.getElementById('join-form').addEventListener('submit', (e) => {
             e.preventDefault(); // Prevent default form submission behavior
-            const roomName = document.getElementById('join-room-name').value;
+            const roomId = document.getElementById('join-room-id').value;
             const password = document.getElementById('join-password').value;
             fetch('/join-room', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ roomName, password })
+                body: JSON.stringify({ roomId, password })
             })
             .then(response => response.text())
             .then(data => {
                 alert(data);
                 if (data === 'Authentication successful') {
-                    socket.emit('join-room', roomName);
+                    socket.emit('join-room', roomId);
                 }
             });
         });
@@ -75,8 +75,8 @@
         document.getElementById('chat-form').addEventListener('submit', (e) => {
             e.preventDefault(); // Prevent default form submission behavior
             const message = document.getElementById('message-input').value;
-            const roomName = document.getElementById('join-room-name').value;
-            socket.emit('chat-message', { roomName, message });
+            const roomId = document.getElementById('join-room-id').value;
+            socket.emit('chat-message', { roomId, message });
             document.getElementById('message-input').value = '';
         });
 
