@@ -14,8 +14,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 let rooms = {};
 
 
-const adminUsers = process.env.ADMIN_USERS.split(',');
-const adminPasswords = process.env.ADMIN_PASSWORDS.split(',');
+const adminUser = process.env.ADMIN_USER;
+const adminPassword = process.env.ADMIN_PASSWORD;
+
 
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'admin.html'));
