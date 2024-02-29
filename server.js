@@ -14,8 +14,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 let rooms = {};
 
 
-const adminUser = process.env.ADMIN_USER;
-const adminPassword = process.env.ADMIN_PASSWORD;
+const adminUsers = process.env.ADMIN_USER;
+const adminPasswords = process.env.ADMIN_PASSWORD;
 
 
 app.get('/admin', (req, res) => {
