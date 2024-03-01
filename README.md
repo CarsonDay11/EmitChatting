@@ -1,1 +1,1 @@
-# 🔴 Emit has begun it's Sunset process. All accounts (and data associated with those accounts) will be deleted on March 1st, 2024. You may read a full blog post here. https://https://emit-community.netlify.app/sunset.html
+# 🔴 Emit has begun it's Sunset process. All accounts (and data associated with those accounts) will be deleted on March 1st, 2024. You may read a full blog post here. https://emit-community.netlify.app/sunset.html
