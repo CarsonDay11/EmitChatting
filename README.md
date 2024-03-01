@@ -1,5 +1,1 @@
-# EmitChatting
-The chatting app made FOR communities, BY communities. Connect with your friends today!
-
-# Community
-Join our own Emit Community at https://emit-community.netlify.app/emit-community || Password: emit
+# 🔴 Emit has begun it's Sunset process. All accounts (and data associated with those accounts) will be deleted on March 1st, 2024. You may read a full blog post here. https://https://emit-community.netlify.app/sunset.html
